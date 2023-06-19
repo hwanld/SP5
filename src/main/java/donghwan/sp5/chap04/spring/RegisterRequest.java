@@ -1,4 +1,4 @@
-package donghwan.sp5.chap03;
+package donghwan.sp5.chap04.spring;
 
 import lombok.Getter;
 import lombok.Setter;

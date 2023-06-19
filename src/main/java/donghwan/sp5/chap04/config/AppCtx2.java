@@ -1,6 +1,8 @@
-package donghwan.sp5.chap03;
+package donghwan.sp5.chap04.config;
 
+import donghwan.sp5.chap04.spring.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,24 +13,23 @@ public class AppCtx2 {
     private MemberDao memberDao;
 
     @Autowired
+    @Qualifier("printer")
     private MemberPrinter memberPrinter;
 
 
     @Bean
     public MemberRegisterService memberRegisterService() {
-        return new MemberRegisterService(memberDao);
+        return new MemberRegisterService();
     }
 
     @Bean
     public ChangePasswordService changePasswordService() {
-        ChangePasswordService changePasswordService = new ChangePasswordService();
-        changePasswordService.setMemberDao(memberDao);
-        return changePasswordService;
+        return new ChangePasswordService();
     }
 
     @Bean
     public MemberListPrinter memberListPrinter() {
-        return new MemberListPrinter(memberDao, memberPrinter);
+        return new MemberListPrinter();
     }
 
     @Bean
