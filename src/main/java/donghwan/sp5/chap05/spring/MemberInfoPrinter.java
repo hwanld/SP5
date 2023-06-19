@@ -1,22 +1,21 @@
-package donghwan.sp5.chap04.spring;
+package donghwan.sp5.chap05.spring;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-
-@AllArgsConstructor
-@NoArgsConstructor
-public class MemberListPrinter {
+@Component("infoPrinter")
+public class MemberInfoPrinter {
 
     private MemberDao memberDao;
     private MemberPrinter memberPrinter;
 
-    public void printAll() {
-        Collection<Member> members = memberDao.selectAll();
-        members.forEach(eachMember -> memberPrinter.print(eachMember));
+    public void printMemberInfo(String email) {
+        Member member = memberDao.selectByEmail(email);
+        if (member == null) {
+            throw new MemberNotFoundException();
+        }
+        memberPrinter.print(member);
     }
 
     @Autowired

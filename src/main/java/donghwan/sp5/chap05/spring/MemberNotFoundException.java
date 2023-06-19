@@ -1,4 +1,4 @@
-package donghwan.sp5.chap04.spring;
+package donghwan.sp5.chap05.spring;
 
 public class MemberNotFoundException extends RuntimeException {
 }

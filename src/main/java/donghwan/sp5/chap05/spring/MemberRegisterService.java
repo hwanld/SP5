@@ -1,21 +1,23 @@
-package donghwan.sp5.chap04.spring;
+package donghwan.sp5.chap05.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public class MemberRegisterService {
     @Autowired
     private MemberDao memberDao;
 
-    public MemberRegisterService () {
+    public MemberRegisterService() {
     }
 
-    public MemberRegisterService (MemberDao memberDao) {
+    public MemberRegisterService(MemberDao memberDao) {
         this.memberDao = memberDao;
     }
 
-    public Long register (RegisterRequest request) {
+    public Long register(RegisterRequest request) {
         Member member = memberDao.selectByEmail(request.getEmail());
         if (member != null) {
             throw new DuplicateMemberException("dup email" + request.getEmail());

@@ -1,8 +1,10 @@
-package donghwan.sp5.chap04.spring;
+package donghwan.sp5.chap05.spring;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 @Setter
 public class ChangePasswordService {
     @Autowired
