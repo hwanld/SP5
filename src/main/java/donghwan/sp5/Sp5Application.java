@@ -13,11 +13,16 @@ public class Sp5Application {
 	private static ApplicationContext ctx = null;
 
 	public static void main(String[] args) {
-		ctx = new AnnotationConfigApplicationContext(AppCtx1.class);
-		MemberRegisterService memberRegisterService = ctx.getBean(MemberRegisterService.class);
-		ChangePasswordService changePasswordService = ctx.getBean(ChangePasswordService.class);
-		SpringApplication.run(Sp5Application.class, args);
+
 	}
+
+//	Chap03
+//	public static void main(String[] args) {
+//		ctx = new AnnotationConfigApplicationContext(AppCtx1.class);
+//		MemberRegisterService memberRegisterService = ctx.getBean(MemberRegisterService.class);
+//		ChangePasswordService changePasswordService = ctx.getBean(ChangePasswordService.class);
+//		SpringApplication.run(Sp5Application.class, args);
+//	}
 
 //  Chap02
 //	public static void main(String[] args) {
@@ -29,6 +34,5 @@ public class Sp5Application {
 //		System.out.println("(g == g1) = " + (g == g1));
 //		ctx.close();
 //	}
-
 
 }
