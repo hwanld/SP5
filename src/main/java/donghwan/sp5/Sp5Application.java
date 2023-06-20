@@ -1,25 +1,37 @@
 package donghwan.sp5;
 
-import donghwan.sp5.chap06.AppContext;
-import donghwan.sp5.chap06.Client;
-import donghwan.sp5.chap06.Client2;
+import donghwan.sp5.chap07.Calculator;
+import donghwan.sp5.chap07.CompCalculator;
+import donghwan.sp5.chap07.ImpeCalculator;
+import donghwan.sp5.chap07.RecCalculator;
+import donghwan.sp5.chap07.config.AppCtx;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 
 @SpringBootApplication
 public class Sp5Application {
-	private static ApplicationContext ctx = null;
 
 	public static void main(String[] args) {
-		AbstractApplicationContext abstractApplicationContext = new AnnotationConfigApplicationContext(AppContext.class);
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppCtx.class);
 
-		Client client = abstractApplicationContext.getBean(Client.class);
-		client.send();
+		RecCalculator calculator = ctx.getBean("calculator", RecCalculator.class);
+		long fiveFact = calculator.factorial(5);
+		System.out.println("cal.factorial(5) = " + fiveFact);
+		System.out.println(calculator.getClass().getName());
 
-		Client2 client2 = abstractApplicationContext.getBean(Client2.class);
-		client2.send();
-		abstractApplicationContext.close();
+		System.out.println("----------------------------------------");
+
+		Calculator compCalculator = ctx.getBean(CompCalculator.class);
+		long anotherFiveFact = compCalculator.factorial(5);
+		System.out.println("cal.factorial(5) = " + anotherFiveFact);
+		System.out.println(compCalculator.getClass().getName());
+
+		System.out.println("----------------------------------------");
+		Calculator compCalculator1 = new ImpeCalculator();
+		long anotherFiveFact1 = compCalculator1.factorial(5);
+		System.out.println("cal.factorial(5) = " + anotherFiveFact);
+		System.out.println(compCalculator1.getClass().getName());
+
+		ctx.close();
 	}
 }
